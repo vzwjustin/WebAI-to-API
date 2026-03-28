@@ -16,13 +16,13 @@ from typing import TYPE_CHECKING
 if TYPE_CHECKING:
     from multiprocessing.synchronize import Event as MultiprocessingEvent
 
-# Import tomli to read pyproject.toml
+# Import tomllib/tomli to read pyproject.toml
 try:
-    import tomli
-except ImportError:
-    # For Python 3.11+, tomllib is in the standard library
+    # Python 3.11+ has tomllib in the standard library
+    import tomllib as tomli
+except ModuleNotFoundError:
     try:
-        import tomllib as tomli
+        import tomli
     except ImportError:
         tomli = None
 
@@ -111,7 +111,7 @@ def start_g4f_server(host: str, port: int, stop_event: "MultiprocessingEvent"):
     monitor_thread.start()
 
     print_server_info(host, port, "g4f")
-    run_g4f_api(host=host, port=port, proxy=None)
+    run_g4f_api(host=host, port=port)
 
 
 # --- Standard Input Listener ---

@@ -85,7 +85,7 @@ async def chat_completions(request: OpenAIChatRequest):
 
     if request.model:
         try:
-            response = await gemini_client.generate_content(message=final_prompt, model=request.model.value, files=None)
+            response = await gemini_client.generate_content(prompt=final_prompt, model=request.model.value, files=None)
             return convert_to_openai_format(response.text, request.model.value, is_stream)
         except Exception as e:
             logger.error(f"Error in /v1/chat/completions endpoint: {e}", exc_info=True)

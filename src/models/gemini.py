@@ -14,11 +14,11 @@ class MyGeminiClient:
     async def init(self) -> None:
         """Initialize the Gemini client."""
         await self.client.init()
-    async def generate_content(self, message: str, model: str, files: Optional[List[Union[str, Path]]] = None):
+    async def generate_content(self, prompt: str, model: str, files: Optional[List[Union[str, Path]]] = None):
         """
         Generate content using the Gemini client.
         """
-        return await self.client.generate_content(message, model=model, files=files)
+        return await self.client.generate_content(prompt, model=model, files=files)
 
     async def close(self) -> None:
         """Close the Gemini client."""

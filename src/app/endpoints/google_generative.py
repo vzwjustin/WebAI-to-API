@@ -26,7 +26,7 @@ async def google_generative_generate(model: str, request: GoogleGenerativeReques
                         prompt += part.text
 
         # Call the gemini_client with the extracted prompt
-        response = await gemini_client.generate_content(prompt, model[0])
+        response = await gemini_client.generate_content(prompt=prompt, model=model[0])
 
         # Format the response to match the Google Generative AI API format
         google_response = {
